@@ -22,6 +22,7 @@ BuildRequires:  bzip2-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  oxygen-icon-theme
+
 %description
 Core executable of Leechcraft
 
@@ -39,7 +40,6 @@ all the plugins with each other, routes requests between them, tracks
 dependencies and performs several other housekeeping tasks.
 
 
-
 %package -n leechcraft
 Summary:    A Cross-Platform Modular Internet-Client
 
@@ -55,7 +55,7 @@ This package contains header files required to develop new modules for
 LeechCraft.
 
 %prep
-%setup -q
+%setup -qn %{product_name}
 %patch0 -p 1
 
 
