@@ -62,6 +62,8 @@ LeechCraft.
 %build
 mkdir -p %{_target_platform}
 pushd %{_target_platform}
+pwd
+ls ../
 %{cmake} \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DLEECHCRAFT_VERSION="%{version}" \
