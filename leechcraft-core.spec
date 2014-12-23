@@ -48,14 +48,14 @@ Summary:    A Cross-Platform Modular Internet-Client
 
 %package -n leechcraft-devel
 Summary:    Leechcraft Development Files
-Requires:   leechcraft%{?_isa} = %{full_version}
+Requires:   %{product_name}%{?_isa} = %{full_version}
 
 %description -n leechcraft-devel
 This package contains header files required to develop new modules for
 LeechCraft.
 
 %prep
-%setup -qn %{product_name}
+%setup -qn %{product_name}-%{version}
 %patch0 -p 1
 
 
