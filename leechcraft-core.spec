@@ -22,12 +22,7 @@ BuildRequires:  bzip2-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  oxygen-icon-theme
-
-
-%package -n leechcraft
-Summary:    A Cross-Platform Modular Internet-Client
-
-%description -n leechcraft
+%description
 Core executable of Leechcraft
 
 Leechcraft is a free modular "internet client" application.
@@ -43,6 +38,13 @@ This package contains the main leechcraft executable, which connects
 all the plugins with each other, routes requests between them, tracks
 dependencies and performs several other housekeeping tasks.
 
+
+
+%package -n leechcraft
+Summary:    A Cross-Platform Modular Internet-Client
+
+%description -n leechcraft
+%{description}
 
 %package -n leechcraft-devel
 Summary:    Leechcraft Development Files
