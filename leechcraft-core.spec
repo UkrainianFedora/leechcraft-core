@@ -65,7 +65,7 @@ pushd %{_target_platform}
 %{cmake} \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DLEECHCRAFT_VERSION="%{version}" \
-    $(cat CMakeLists.txt | egrep "^option \(ENABLE" | awk '{print $2}' | sed 's/(//g;s/.*/-D\0=False/g' | xargs)
+    $(cat ../CMakeLists.txt | egrep "^option \(ENABLE" | awk '{print $2}' | sed 's/(//g;s/.*/-D\0=False/g' | xargs)
     ../src
 
 popd
