@@ -62,12 +62,10 @@ LeechCraft.
 %build
 mkdir -p %{_target_platform}
 pushd %{_target_platform}
-pwd
-ls ../
 %{cmake} \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DLEECHCRAFT_VERSION="%{version}" \
-    $(cat ../CMakeLists.txt | egrep "^option \(ENABLE" | awk '{print $2}' | sed 's/(//g;s/.*/-D\0=False/g' | xargs)
+    $(cat ../src/CMakeLists.txt | egrep "^option \(ENABLE" | awk '{print $2}' | sed 's/(//g;s/.*/-D\0=False/g' | xargs)
     ../src
 
 popd
