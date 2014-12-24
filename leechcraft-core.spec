@@ -22,6 +22,7 @@ BuildRequires:  bzip2-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  oxygen-icon-theme
+BuildRequires:  qwt-devel
 
 %description
 Core executable of Leechcraft
