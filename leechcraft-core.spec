@@ -97,7 +97,6 @@ desktop-file-install                                    \
 %dir %{_datadir}/icons/hicolor/14x14/apps
 %dir %{_datadir}/%{product_name}
 %dir %{_datadir}/%{product_name}/qml
-%dir %{_libdir}/%{product_name}
 %{_datadir}/%{product_name}/global_icons
 %{_datadir}/applications/%{product_name}.desktop
 %{_datadir}/icons/hicolor/*/*/*
