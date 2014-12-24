@@ -22,7 +22,6 @@ BuildRequires:  bzip2-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  oxygen-icon-theme
-BuildRequires:  qjson-devel
 
 %description
 Core executable of Leechcraft
@@ -67,6 +66,7 @@ pushd %{_target_platform}
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
     -DLEECHCRAFT_VERSION="%{version}" \
     $(cat ../src/CMakeLists.txt | egrep "^option \(ENABLE" | awk '{print $2}' | sed 's/(//g;s/.*/-D\0=False/g' | xargs) \
+    $(cat ../src/CMakeLists.txt | grep cmake_dependent_option | grep ENABLE | awk '{print $2}' | sed 's/(//g;s/.*/-D\0=False/g' | xargs) \
     ../src
 
 popd
