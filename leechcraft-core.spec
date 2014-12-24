@@ -93,16 +93,12 @@ desktop-file-install                                    \
 %{settings_dir}/coresettings.xml
 %dir %{settings_dir}
 %dir %{translations_dir}
-%dir %{plugin_dir}
 %dir %{_datadir}/icons/hicolor/14x14
 %dir %{_datadir}/icons/hicolor/14x14/apps
 %dir %{_datadir}/%{product_name}
-%dir %{_datadir}/%{product_name}/installed
-%dir %{_datadir}/%{product_name}/scripts
 %dir %{_datadir}/%{product_name}/qml
 %dir %{_libdir}/%{product_name}
 %{_datadir}/%{product_name}/global_icons
-%{_datadir}/%{product_name}/sounds
 %{_datadir}/applications/%{product_name}.desktop
 %{_datadir}/icons/hicolor/*/*/*
 %{_libdir}/libleechcraft-util.so.0.5.0
