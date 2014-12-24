@@ -10,7 +10,7 @@ Version:        0.6.60
 Release:        1%{?dist}
 License:        GPLv2+
 Url:            http://leechcraft.org
-Source0:        http://downloads.sourceforge.net/project/leechcraft/LeechCraft/0.6.60/leechcraft-0.6.60.tar.xz
+Source0:        http://dist.leechcraft.org/LeechCraft/0.6.70/leechcraft-0.6.70.tar.xz 
 Source1:        %{product_name}.desktop
 Patch0:         001-fix-plotitem-compilation-error.patch
 
@@ -112,5 +112,8 @@ desktop-file-install                                    \
 %{_libdir}/libleechcraft-xsd.so
 
 %changelog
+* Wed Dec 24 2014 Minh Ngo <minh@fedoraproject.org> - 0.6.70-1
+- 0.6.70
+
 * Mon Dec 22 2014 Minh Ngo <minh@fedoraproject.org> - 0.6.60-1
 - 0.6.60
