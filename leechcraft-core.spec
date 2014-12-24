@@ -6,7 +6,7 @@
 
 Name:           leechcraft-core
 Summary:        A Cross-Platform Modular Internet-Client 
-Version:        0.6.60
+Version:        0.6.70
 Release:        1%{?dist}
 License:        GPLv2+
 Url:            http://leechcraft.org
