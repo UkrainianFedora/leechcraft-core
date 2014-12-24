@@ -88,21 +88,21 @@ desktop-file-install                                    \
 
 %files -n leechcraft -f leechcraft.lang
 %doc README LICENSE INSTALL
-%{_bindir}/%{product_name}
-%{_bindir}/%{product_name}-add-file
+%{_bindir}/*
 %{settings_dir}/coresettings.xml
 %dir %{settings_dir}
 %dir %{translations_dir}
 %dir %{_datadir}/icons/hicolor/14x14
 %dir %{_datadir}/icons/hicolor/14x14/apps
 %dir %{_datadir}/%{product_name}
-%dir %{_datadir}/%{product_name}/qml
+%{_datadir}/%{product_name}/qml/*
+%{_datadir}/%{product_name}/themes/*
 %{_datadir}/%{product_name}/global_icons
 %{_datadir}/applications/%{product_name}.desktop
 %{_datadir}/icons/hicolor/*/*/*
 %{_libdir}/libleechcraft-util.so.0.5.0
 %{_libdir}/libleechcraft-xsd.so.0.3.0
-%doc %{_mandir}/man1/%{product_name}.1.gz
+%doc %{_mandir}/man1/*.1.gz
 
 %files -n leechcraft-devel
 %{_datadir}/%{product_name}/cmake
