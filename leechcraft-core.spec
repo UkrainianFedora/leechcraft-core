@@ -12,7 +12,6 @@ License:        GPLv2+
 Url:            http://leechcraft.org
 Source0:        http://dist.leechcraft.org/LeechCraft/0.6.70/leechcraft-0.6.70.tar.xz 
 Source1:        %{product_name}.desktop
-Patch0:         001-fix-plotitem-compilation-error.patch
 
 BuildRequires:  cmake
 BuildRequires:  boost-devel 
@@ -57,7 +56,6 @@ LeechCraft.
 
 %prep
 %setup -qn %{product_name}-%{version}
-%patch0 -p 1
 
 
 %build
