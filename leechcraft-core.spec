@@ -22,6 +22,8 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  oxygen-icon-theme
 BuildRequires:  qwt-devel
+BuildRequires:  pcre-devel
+
 
 %description
 Core executable of Leechcraft
