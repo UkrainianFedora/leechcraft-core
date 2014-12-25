@@ -100,7 +100,7 @@ desktop-file-install                                    \
 %{_datadir}/%{product_name}/global_icons
 %{_datadir}/applications/%{product_name}.desktop
 %{_datadir}/icons/hicolor/*/*/*
-%{_libdir}/libleechcraft-util.so.0.5.0
+%{_libdir}/libleechcraft-util*.so.%{version}
 %{_libdir}/libleechcraft-xsd.so.0.3.0
 %doc %{_mandir}/man1/*.1.gz
 
@@ -108,7 +108,7 @@ desktop-file-install                                    \
 %{_datadir}/%{product_name}/cmake
 %{_datadir}/cmake/Modules/InitLCPlugin.cmake
 %{_includedir}/%{product_name}
-%{_libdir}/libleechcraft-util.so
+%{_libdir}/libleechcraft-util*.so
 %{_libdir}/libleechcraft-xsd.so
 
 %changelog
