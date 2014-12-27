@@ -7,7 +7,7 @@
 Name:           leechcraft-core
 Summary:        A Cross-Platform Modular Internet-Client 
 Version:        0.6.70
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPLv2+
 Url:            http://leechcraft.org
 Source0:        http://dist.leechcraft.org/LeechCraft/0.6.70/leechcraft-0.6.70.tar.xz 
@@ -19,8 +19,6 @@ BuildRequires:  qt4-devel
 BuildRequires:  qt-webkit-devel
 BuildRequires:  bzip2-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  hicolor-icon-theme
-BuildRequires:  oxygen-icon-theme
 BuildRequires:  qwt-devel
 BuildRequires:  pcre-devel
 
@@ -64,11 +62,10 @@ LeechCraft.
 mkdir -p %{_target_platform}
 pushd %{_target_platform}
 %{cmake} \
-    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-    -DLEECHCRAFT_VERSION="%{version}" \
-    $(cat ../src/CMakeLists.txt | egrep "^option \(ENABLE" | awk '{print $2}' | sed 's/(//g;s/.*/-D\0=False/g' | xargs) \
-    $(cat ../src/CMakeLists.txt | grep cmake_dependent_option | grep ENABLE | awk '{print $2}' | sed 's/(//g;s/.*/-D\0=False/g' | xargs) \
-    ../src
+  -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+  -DLEECHCRAFT_VERSION="%{version}" \
+  $(cat ../src/CMakeLists.txt | egrep "^(cmake_dependent_)?option \(ENABLE" | awk '{print $2}' | sed 's/^(/-D/;s/$/=False/;' | xargs) \
+  ../src
 
 popd
 make %{?_smp_mflags} -C %{_target_platform} 
@@ -112,6 +109,10 @@ desktop-file-install                                    \
 %{_libdir}/libleechcraft-xsd.so
 
 %changelog
+* Sat Dec 27 2014 Minh Ngo <minh@fedoraproject.org> - 0.6.70-2
+- Refactoring in the cmake script.
+- Removing icon themes from build dependencies
+
 * Wed Dec 24 2014 Minh Ngo <minh@fedoraproject.org> - 0.6.70-1
 - 0.6.70
 
