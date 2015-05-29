@@ -22,6 +22,7 @@ BuildRequires:  qt5-qtwebkit-devel
 BuildRequires:  bzip2-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  pcre-devel
+BuildRequires:  qwt-qt5-devel
 
 
 %description
