@@ -7,11 +7,11 @@
 
 Name:           leechcraft-core
 Summary:        A Cross-Platform Modular Internet-Client
-Version:        0.6.70
+Version:        0.6.75
 Release:        1%{?dist}
 License:        GPLv2+
 Url:            http://leechcraft.org
-Source0:        http://dist.leechcraft.org/LeechCraft/0.6.75/leechcraft-%{version}-%{git_version}.tar.xz
+Source0:        http://dist.leechcraft.org/LeechCraft/%{version}/leechcraft-0.6.70-%{git_version}.tar.xz
 
 Patch0:         001-fix-qwt-cmake-script.patch
 
@@ -56,7 +56,7 @@ This package contains header files required to develop new modules for
 LeechCraft.
 
 %prep
-%setup -qn %{product_name}-%{version}-%{git_version}
+%setup -qn %{product_name}-0.6.70-%{git_version}
 %patch0 -p 0
 
 
