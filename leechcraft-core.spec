@@ -8,12 +8,13 @@
 Name:           leechcraft-core
 Summary:        A Cross-Platform Modular Internet-Client
 Version:        0.6.75
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPLv2+
 Url:            http://leechcraft.org
 Source0:        http://dist.leechcraft.org/LeechCraft/%{version}/leechcraft-0.6.70-%{git_version}.tar.xz
 
 Patch0:         001-fix-qwt-cmake-script.patch
+Patch1:         002-find-leechcraft-qt5-libs.patch
 
 BuildRequires:  cmake
 BuildRequires:  boost-devel
@@ -59,6 +60,7 @@ LeechCraft.
 %prep
 %setup -qn %{product_name}-0.6.70-%{git_version}
 %patch0 -p 0
+%patch1 -p 0
 
 
 %build
@@ -110,6 +112,9 @@ make install/fast DESTDIR=$RPM_BUILD_ROOT -C %{_target_platform}
 %{_libdir}/libleechcraft-*-qt5.so
 
 %changelog
+* Fri May 29 2015 Minh Ngo <minh@fedoraproject.org> - 0.6.75-2
+- Fixing the cmake script
+
 * Fri May 29 2015 Minh Ngo <minh@fedoraproject.org> - 0.6.75-1
 - Qt5, 0.6.75
 
