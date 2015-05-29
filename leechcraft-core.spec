@@ -9,7 +9,7 @@
 Name:           leechcraft-core
 Summary:        A Cross-Platform Modular Internet-Client
 Version:        0.6.75
-Release:        3%{?dist}
+Release:        6%{?dist}
 License:        GPLv2+
 Url:            http://leechcraft.org
 Source0:        http://dist.leechcraft.org/LeechCraft/%{version}/leechcraft-0.6.70-%{git_version}.tar.xz
@@ -22,6 +22,8 @@ BuildRequires:  boost-devel
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  qt5-qtwebkit-devel
 BuildRequires:  qt5-qtx11extras-devel
+BuildRequires:  qt5-qtscript-devel
+BuildRequires:  qt5-qttools-devel
 BuildRequires:  bzip2-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  pcre-devel
@@ -117,7 +119,7 @@ make install/fast DESTDIR=$RPM_BUILD_ROOT -C %{_target_platform}
 %{_libdir}/libleechcraft-*-qt5.so
 
 %changelog
-* Fri May 29 2015 Minh Ngo <minh@fedoraproject.org> - 0.6.75-3
+* Fri May 29 2015 Minh Ngo <minh@fedoraproject.org> - 0.6.75-6
 - Switching to clang
 
 * Fri May 29 2015 Minh Ngo <minh@fedoraproject.org> - 0.6.75-2
