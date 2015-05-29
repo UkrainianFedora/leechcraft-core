@@ -21,6 +21,7 @@ BuildRequires:  cmake
 BuildRequires:  boost-devel
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  qt5-qtwebkit-devel
+BuildRequires:  qt5-qtx11extras-devel
 BuildRequires:  bzip2-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  pcre-devel
