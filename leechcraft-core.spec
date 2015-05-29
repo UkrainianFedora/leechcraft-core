@@ -3,23 +3,24 @@
 %define translations_dir %{_datadir}/%{product_name}/translations
 %define settings_dir %{_datadir}/%{product_name}/settings
 %define full_version %{version}-%{release}
+%define git_version 3466-g864bd1a
 
 Name:           leechcraft-core
-Summary:        A Cross-Platform Modular Internet-Client 
+Summary:        A Cross-Platform Modular Internet-Client
 Version:        0.6.70
-Release:        2%{?dist}
+Release:        1%{?dist}
 License:        GPLv2+
 Url:            http://leechcraft.org
-Source0:        http://dist.leechcraft.org/LeechCraft/0.6.70/leechcraft-0.6.70.tar.xz 
-Source1:        %{product_name}.desktop
+Source0:        http://dist.leechcraft.org/LeechCraft/0.6.75/leechcraft-%{version}-%{git_version}.tar.xz
+
+Patch0:         001-fix-qwt-cmake-script.patch
 
 BuildRequires:  cmake
-BuildRequires:  boost-devel 
-BuildRequires:  qt4-devel
-BuildRequires:  qt-webkit-devel
+BuildRequires:  boost-devel
+BuildRequires:  qt5-qtbase-devel
+BuildRequires:  qt5-qtwebkit-devel
 BuildRequires:  bzip2-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  qwt-devel
 BuildRequires:  pcre-devel
 
 
@@ -55,15 +56,19 @@ This package contains header files required to develop new modules for
 LeechCraft.
 
 %prep
-%setup -qn %{product_name}-%{version}
+%setup -qn %{product_name}-%{version}-%{git_version}
+%patch0 -p 0
 
 
 %build
 mkdir -p %{_target_platform}
 pushd %{_target_platform}
+
 %{cmake} \
   -DCMAKE_BUILD_TYPE=RelWithDebInfo \
   -DLEECHCRAFT_VERSION="%{version}" \
+  -DUSE_QT5=True \
+  -DUSE_CPP14=True \
   $(cat ../src/CMakeLists.txt | egrep "^(cmake_dependent_)?option \(ENABLE" | awk '{print $2}' | sed 's/^(/-D/;s/$/=False/;' | xargs) \
   ../src
 
@@ -73,10 +78,6 @@ make %{?_smp_mflags} -C %{_target_platform}
 %install
 rm -rf $RPM_BUILD_ROOT
 make install/fast DESTDIR=$RPM_BUILD_ROOT -C %{_target_platform}
-
-desktop-file-install                                    \
-  --dir=${RPM_BUILD_ROOT}%{_datadir}/applications         \
-  %{SOURCE1}
 
 %find_lang leechcraft --with-qt --without-mo
 
@@ -93,22 +94,24 @@ desktop-file-install                                    \
 %dir %{_datadir}/icons/hicolor/14x14/apps
 %dir %{_datadir}/%{product_name}
 %{_datadir}/%{product_name}/qml/*
+%{_datadir}/%{product_name}/qml5/*
 %{_datadir}/%{product_name}/themes/*
 %{_datadir}/%{product_name}/global_icons
-%{_datadir}/applications/%{product_name}.desktop
+%{_datadir}/applications/%{product_name}-qt5.desktop
 %{_datadir}/icons/hicolor/*/*/*
-%{_libdir}/libleechcraft-util*.so.%{version}
-%{_libdir}/libleechcraft-xsd.so.0.3.0
+%{_libdir}/libleechcraft-*-qt5.so.*
 %doc %{_mandir}/man1/*.1.gz
 
 %files -n leechcraft-devel
 %{_datadir}/%{product_name}/cmake
 %{_datadir}/cmake/Modules/InitLCPlugin.cmake
 %{_includedir}/%{product_name}
-%{_libdir}/libleechcraft-util*.so
-%{_libdir}/libleechcraft-xsd.so
+%{_libdir}/libleechcraft-*-qt5.so
 
 %changelog
+* Fri May 29 2015 Minh Ngo <minh@fedoraproject.org> - 0.6.75-1
+- Qt5, 0.6.75
+
 * Sat Dec 27 2014 Minh Ngo <minh@fedoraproject.org> - 0.6.70-2
 - Refactoring in the cmake script.
 - Removing icon themes from build dependencies
