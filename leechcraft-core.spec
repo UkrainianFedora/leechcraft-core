@@ -4,11 +4,12 @@
 %define settings_dir %{_datadir}/%{product_name}/settings
 %define full_version %{version}-%{release}
 %define git_version 3466-g864bd1a
+%global optflags %(echo %{optflags} | sed 's/-D_FORTIFY_SOURCE=2 //')
 
 Name:           leechcraft-core
 Summary:        A Cross-Platform Modular Internet-Client
 Version:        0.6.75
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        GPLv2+
 Url:            http://leechcraft.org
 Source0:        http://dist.leechcraft.org/LeechCraft/%{version}/leechcraft-0.6.70-%{git_version}.tar.xz
@@ -24,6 +25,7 @@ BuildRequires:  bzip2-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  pcre-devel
 BuildRequires:  qwt-qt5-devel
+BuildRequires:  clang
 
 
 %description
@@ -70,8 +72,10 @@ pushd %{_target_platform}
 %{cmake} \
   -DCMAKE_BUILD_TYPE=RelWithDebInfo \
   -DLEECHCRAFT_VERSION="%{version}" \
+  -DCMAKE_C_COMPILER=clang \
+  -DCMAKE_CXX_COMPILER=clang++ \
   -DUSE_QT5=True \
-  -DUSE_CPP14=True \
+  -DUSE_CPP14=False \
   $(cat ../src/CMakeLists.txt | egrep "^(cmake_dependent_)?option \(ENABLE" | awk '{print $2}' | sed 's/^(/-D/;s/$/=False/;' | xargs) \
   ../src
 
@@ -112,6 +116,9 @@ make install/fast DESTDIR=$RPM_BUILD_ROOT -C %{_target_platform}
 %{_libdir}/libleechcraft-*-qt5.so
 
 %changelog
+* Fri May 29 2015 Minh Ngo <minh@fedoraproject.org> - 0.6.75-3
+- Switching to clang
+
 * Fri May 29 2015 Minh Ngo <minh@fedoraproject.org> - 0.6.75-2
 - Fixing the cmake script
 
